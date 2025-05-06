@@ -1,20 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+h3 {
+  color: #555;
+  margin-top: 0;
+}
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+}
+
+form input[type="text"],
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+form button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+form button:hover {
+  background-color: #45a049;
+}
+
+div > div {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+  max-width: 500px;
+}
+
+p {
+  font-size: 16px;
+  color: #444;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  form, div > div {
+    max-width: 100%;
+  }
+}
+
+    </style>
 </head>
+
 <body>
 
-    @auth
-    <p>Congrat you are Logged In</p>
-    <form action="/logout" method="POST">
-        @csrf
-        <button>Log Out</button>
-    </form>
-    
+    {{-- @auth --}}
     <br>
 
     <br>
@@ -32,13 +103,20 @@
     <div>
         <div>
             @foreach($posts as $post)
-            <h1>{{$post['title']}}</h1>
-            <h3>{{$post['body']}}</h3>
+                <h1>{{$post['title']}}</h1>
+                <h3>{{$post['body']}}</h3>
             @endforeach
         </div>
     </div>
-    @else
-    <div>
+
+    <p>Congrat you are Logged In</p>
+    <form action="/logout" method="POST">
+        @csrf
+        <button>Log Out</button>
+    </form>
+
+    {{-- @else
+    {{-- <div>
         <form action="/register" method="POST">
             @csrf
             <p>Register</p>
@@ -47,16 +125,17 @@
             <input type="text" name="password" placeholder="Enter password">
             <button>Register</button><br><br>
         </form>
-    </div>
-    <div>
+    </div> --}}
+    {{-- <div>
         <form action="/login" method="POST">
-        @csrf
-        <p>Login</p>
-        <input type="text" name="loginname" placeholder="Enter Name">
-        <input type="text" name="loginpassword" placeholder="Enter password">
-        <button>Login</button>
+            @csrf
+            <p>Login</p>
+            <input type="text" name="loginname" placeholder="Enter Name">
+            <input type="text" name="loginpassword" placeholder="Enter password">
+            <button>Login</button>
         </form>
-    </div>
-    @endauth
+    </div> --}}
+    {{-- @endauth --}}
 </body>
+
 </html>

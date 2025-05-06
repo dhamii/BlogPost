@@ -20,4 +20,14 @@ class PostController extends Controller
         Post::create($incomingFields);
         return redirect('/');
     }
+    public function viewLogin(){
+        return view('login');
+    }
+
+
+    public function viewRegister(){
+        return view('register');
+    }
 }
+
+

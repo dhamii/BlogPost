@@ -7,9 +7,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $posts = [];
     if(auth()->check()){
+        
         $posts = auth()->user()->posts()->latest()->get();
+        return view('home', ['posts' => $posts]);
     }
-    return view('home', ['posts' => $posts]);
+    else{
+        return redirect('/login');
+    }
 });
 
 Route::post('/register', [UserController::class, 'register']);
@@ -18,3 +22,11 @@ Route::post('/logout', [UserController::class, 'logout']);
 
 
 Route::post('/create_post', [PostController::class, 'createPost']);
+
+
+Route::get('/login', [PostController::class,'viewLogin']);
+
+
+
+
+Route::get('/register', [PostController::class,'viewRegister']);
