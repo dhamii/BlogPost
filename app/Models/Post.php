@@ -12,4 +12,9 @@ class Post extends Model
         'user_id'
     ];
     protected $table = 'blog_post';
+
+
+    public function owner(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
