@@ -35,3 +35,6 @@ Route::get('/register', [PostController::class,'viewRegister']);
 Route::get('/edit-post/{post}', [PostController::class,'viewEditPost']);
 
 Route::put('/edit-post/{post}', [PostController::class,'editPost']);
+
+
+Route::delete('/delete-post/{post}', [PostController::class,'deletePost']);

@@ -35,13 +35,28 @@ class PostController extends Controller
             'title'=> 'required',
             'body'=> 'required'
         ]);
-
+        if(auth()->user()->id != $post->user_id){
+            return redirect('/');
+        }
         $post->update($incomingFields);
         return redirect('/');
     }
 
     public function viewEditPost(Post $post){
+        if(auth()->user()->id != $post['user_id']){
+        return redirect('/');
+        }
+
         return view('edit-post', ['post' => $post]);
+    }
+
+    public function deletePost(Post $post){
+        if(auth()->user()->id != $post['user_id']){
+            return redirect('/');
+        }
+
+        $post->delete();
+        return redirect('/');
     }
 }
 

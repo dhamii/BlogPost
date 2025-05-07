@@ -61,6 +61,7 @@
   <div class="register-container">
     <h2>Register</h2>
     <form action="/register" method="post">
+        @csrf
       <input type="text" name="name" placeholder="Full Name" required>
       <input type="text" name="email" placeholder="Email Address" required>
       <input type="password" name="password" placeholder="Password" required>

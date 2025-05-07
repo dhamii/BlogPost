@@ -108,6 +108,8 @@
                 <h3>{{$post['body']}}</h3>
                 <a href="edit-post/{{$post->id}}">Edit</a>
                 <form action="/delete-post/{{$post->id}}" method="POST">
+                    @method('DELETE')
+                    @csrf
                     <button>Delete</button>
                 </form>
             @endforeach
