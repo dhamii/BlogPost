@@ -30,3 +30,8 @@ Route::get('/login', [PostController::class,'viewLogin']);
 
 
 Route::get('/register', [PostController::class,'viewRegister']);
+
+
+Route::get('/edit-post/{post}', [PostController::class,'viewEditPost']);
+
+Route::put('/edit-post/{post}', [PostController::class,'editPost']);

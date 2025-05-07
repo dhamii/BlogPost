@@ -28,6 +28,20 @@ class PostController extends Controller
     public function viewRegister(){
         return view('register');
     }
-}
 
+
+    public function editPost(Post $post, Request $request){
+        $incomingFields = $request->validate([
+            'title'=> 'required',
+            'body'=> 'required'
+        ]);
+
+        $post->update($incomingFields);
+        return redirect('/');
+    }
+
+    public function viewEditPost(Post $post){
+        return view('edit-post', ['post' => $post]);
+    }
+}
 

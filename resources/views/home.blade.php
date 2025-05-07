@@ -8,78 +8,79 @@
     <title>Document</title>
     <style>
         body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 20px;
-}
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
 
-h1 {
-  color: #333;
-  margin-bottom: 10px;
-}
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
 
-h3 {
-  color: #555;
-  margin-top: 0;
-}
+        h3 {
+            color: #555;
+            margin-top: 0;
+        }
 
-form {
-  background-color: #fff;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-}
+        .elseform {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+        }
 
-form input[type="text"],
-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
+        form input[type="text"],
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
 
-form button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
+        .create-log {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
 
-form button:hover {
-  background-color: #45a049;
-}
+        .create-log:hover {
+            background-color: #45a049;
+        }
 
-div > div {
-  background-color: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin-bottom: 15px;
-  max-width: 500px;
-}
+        div>div {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            max-width: 500px;
+        }
 
-p {
-  font-size: 16px;
-  color: #444;
-}
+        p {
+            font-size: 16px;
+            color: #444;
+        }
 
-@media (max-width: 600px) {
-  body {
-    padding: 10px;
-  }
-  form, div > div {
-    max-width: 100%;
-  }
-}
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
 
+            form,
+            div>div {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -90,14 +91,14 @@ p {
 
     <br>
 
-
+    <p>Congrat you are Logged In</p>
     <h1>Blog Post</h1>
 
-    <form action="/create_post" method="POST">
+    <form class="elseform" action="/create_post" method="POST">
         @csrf
         <input type="text" name="title">
         <textarea name="body"></textarea>
-        <button>Create</button>
+        <button class="create-log">Create</button>
     </form>
 
     <div>
@@ -105,14 +106,18 @@ p {
             @foreach($posts as $post)
                 <h1>{{$post['title']}}</h1>
                 <h3>{{$post['body']}}</h3>
+                <a href="edit-post/{{$post->id}}">Edit</a>
+                <form action="/delete-post/{{$post->id}}" method="POST">
+                    <button>Delete</button>
+                </form>
             @endforeach
         </div>
     </div>
 
-    <p>Congrat you are Logged In</p>
-    <form action="/logout" method="POST">
+
+    <form action="/logout" class="elseform" method="POST">
         @csrf
-        <button>Log Out</button>
+        <button class="create-log">Log Out</button>
     </form>
 
     {{-- @else
