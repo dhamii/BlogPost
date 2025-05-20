@@ -57,7 +57,13 @@
   </style>
 </head>
 <body>
+@auth
+  @php
+   header('Location: /');
+   exit();
+  @endphp
 
+  @else
   <div class="register-container">
     <h2>Register</h2>
     <form action="/register" method="post">
@@ -72,4 +78,10 @@
     </div>
   </div>
 
+
+
+  @endauth
+
 </body>
+
+</html>
