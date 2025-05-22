@@ -58,5 +58,12 @@ class PostController extends Controller
         $post->delete();
         return redirect('/');
     }
+    public function displayAll(){
+        $posts = Post::all();
+        // dd($posts);
+
+
+        return view('displayAll', ['posts'=> $posts]);
+    }
 }
 

@@ -104,7 +104,7 @@
     <div>
         <div>
             @foreach($posts as $post)
-                <h1>{{$post['title']}} by {{$post->owner->name}}</h1>
+                <h1>{{$post['title']}} <small>by  {{$post->owner->name}}</small></h1>
                 <h3>{{$post['body']}}</h3>
                 <a href="edit-post/{{$post->id}}">Edit</a>
                 <form action="/delete-post/{{$post->id}}" method="POST">

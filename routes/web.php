@@ -38,3 +38,5 @@ Route::put('/edit-post/{post}', [PostController::class,'editPost']);
 
 
 Route::delete('/delete-post/{post}', [PostController::class,'deletePost']);
+
+Route::get('/allpost', [PostController::class,'displayAll']);
