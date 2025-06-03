@@ -64,7 +64,7 @@ class PostController extends Controller
         // dd($posts);
 
 
-        return view('displayAll', ['posts'=> $posts]);
+        return view('displayAll', compact('posts'));
     }
 }
 
