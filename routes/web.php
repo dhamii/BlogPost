@@ -24,12 +24,12 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/create_post', [PostController::class, 'createPost']);
 
 
-Route::get('/login', [PostController::class,'viewLogin']);
+Route::get('/login', [UserController::class,'viewLogin'])->name('login');
 
 
 
 
-Route::get('/register', [PostController::class,'viewRegister']);
+Route::get('/register', [UserController::class,'viewRegister']);
 
 
 Route::get('/edit-post/{post}', [PostController::class,'viewEditPost']);

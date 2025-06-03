@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class UserController extends Controller
 {
+
     public function register(Request $request){
         $incomingFields = request() -> validate([
             'name' => 'required',
@@ -31,5 +33,12 @@ class UserController extends Controller
     public function logout(){
         auth()->logout();
         return redirect('/');
+    }
+        public function viewLogin(){
+        return view('login');
+    }
+
+        public function viewRegister(){
+        return view('register');
     }
 }

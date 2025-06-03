@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Container\Attributes\Auth;
 
 class PostController extends Controller
 {
+
+
+        public function __construct(){
+        $this->middleware('auth');
+    }
     public function createPost(Request $request)
     {
         $incomingFields = $request->validate(
@@ -20,14 +26,9 @@ class PostController extends Controller
         Post::create($incomingFields);
         return redirect('/');
     }
-    public function viewLogin(){
-        return view('login');
-    }
 
 
-    public function viewRegister(){
-        return view('register');
-    }
+
 
 
     public function editPost(Post $post, Request $request){
