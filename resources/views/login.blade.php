@@ -61,9 +61,14 @@
     <h2>Login</h2>
     <form action="/login" method="post">
         @csrf
-        <input type="text" name="loginname" placeholder="Enter Name">
-        <input type="text" name="loginpassword" placeholder="Enter password">
+        <input type="text" name="loginname" placeholder="Enter Name" required>
+        <input type="text" name="loginpassword" placeholder="Enter password" required>
         <button>Login</button>
+        @if(session('loginerror'))
+            <div style="color: red; text-align: center; margin-top: 10px;">
+                {{ session('loginerror') }}
+            </div>
+        @endif
     </form>
     <div class="signup">
       Don't have an account? <a href="/register">Sign up</a>

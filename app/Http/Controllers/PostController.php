@@ -60,7 +60,7 @@ class PostController extends Controller
         return redirect('/');
     }
     public function displayAll(){
-        $posts = Post::all();
+        $posts = Post::paginate(3);
         // dd($posts);
 
 
