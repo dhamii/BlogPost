@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', function () {
@@ -41,6 +42,8 @@ Route::prefix('admin')->group(function () {
     Route::delete('delete/{id}', [AdminController::class, 'deleteuser'])->name('admin.deleteuser');
     Route::delete('delete/post/{id}', [AdminController::class, 'deletepost'])->name('admin.deletepost');
 });
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('/edit-post/{post}', [PostController::class,'viewEditPost']);
 
 Route::put('/edit-post/{post}', [PostController::class,'editPost']);
