@@ -17,7 +17,7 @@ Route::get('/', function () {
     else{
         return redirect('/login');
     }
-});
+})->name('dashboard');
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Container\Attributes\Auth;
 
 class PostController extends Controller
@@ -16,12 +17,17 @@ class PostController extends Controller
     }
     public function createPost(Request $request)
     {
+        try{
         $incomingFields = $request->validate(
             [
                 'title' => 'required',
                 'body' => 'required'
             ]
-        );
+        );}
+        catch(ValidationException $e){
+            dd($e->getmessage()); //TODO --->>>
+        }
+        dd($incomingFields);
         $incomingFields['user_id'] = auth()->id();
         Post::create($incomingFields);
         return redirect('/');

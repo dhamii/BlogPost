@@ -93,7 +93,9 @@
 
     <p>Congrat you are Logged In</p>
     <h1>Blog Post</h1>
-
+        @if(@session('routeissue'))
+            {{ session('routeissue') }}
+        @endif
     <form class="elseform" action="/create_post" method="POST">
         @csrf
         <input type="text" name="title">

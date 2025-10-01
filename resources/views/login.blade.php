@@ -61,7 +61,7 @@
     <h2>Login</h2>
     <form action="/login" method="post">
         @csrf
-        <input type="text" name="loginname" placeholder="Enter Name" required>
+        <input type="text" name="loginemail" placeholder="Enter email" required>
         <input type="text" name="loginpassword" placeholder="Enter password" required>
         <button>Login</button>
         @if(session('loginerror'))
