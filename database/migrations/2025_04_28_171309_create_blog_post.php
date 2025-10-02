@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('blog_post', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table-> string('title');
+            $table->string('title');
             $table->longText('body');
+            $table->string('image');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }

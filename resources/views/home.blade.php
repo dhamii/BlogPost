@@ -96,10 +96,14 @@
         @if(@session('routeissue'))
             {{ session('routeissue') }}
         @endif
-    <form class="elseform" action="/create_post" method="POST">
+        @if(@session('errorsss'))
+            {{ session('errorsss')}}
+        @endif
+    <form class="elseform" enctype="multipart/form-data" action="/create_post" method="POST">
         @csrf
-        <input type="text" name="title">
-        <textarea name="body"></textarea>
+        <input type="text" name="title" placeholder="Title">
+        <textarea name="body" placeholder="Body"></textarea>
+        <input type="file" name="image" accept="image/*">
         <button class="create-log">Create</button>
     </form>
 

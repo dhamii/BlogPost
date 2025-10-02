@@ -53,8 +53,20 @@ class UserController extends Controller
     public function viewRegister()
     {
         if(auth()->check()){
-
+            return to_route('dashboard');
         }
         return view('register');
+    }
+
+    public function dashboard(){
+        $posts = [];
+    if(auth()->check()){
+        
+        $posts = auth()->user()->posts()->latest()->get();
+        return view('home', ['posts' => $posts]);
+    }
+    else{
+        return redirect('/login');
+    }
     }
 }

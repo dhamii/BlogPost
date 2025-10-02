@@ -7,17 +7,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
-Route::get('/', function () {
-    $posts = [];
-    if(auth()->check()){
-        
-        $posts = auth()->user()->posts()->latest()->get();
-        return view('home', ['posts' => $posts]);
-    }
-    else{
-        return redirect('/login');
-    }
-})->name('dashboard');
+Route::get('/', [UserController::class, 'dashboard'])->name('dashboard');
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);

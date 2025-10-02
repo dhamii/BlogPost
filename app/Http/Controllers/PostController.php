@@ -21,13 +21,17 @@ class PostController extends Controller
         $incomingFields = $request->validate(
             [
                 'title' => 'required',
-                'body' => 'required'
+                'body' => 'required',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
             ]
         );}
         catch(ValidationException $e){
-            dd($e->getmessage()); //TODO --->>>
+            dd($e);
+            return back()->with(['errorsss' => $e->getmessage()]);
         }
+        // dd($request);
         // dd($incomingFields);
+        $request->file('image')->store('image', 'public');
         $incomingFields['user_id'] = auth()->id();
         Post::create($incomingFields);
         return redirect('/');
