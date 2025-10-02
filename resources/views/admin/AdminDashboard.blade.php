@@ -30,10 +30,3 @@
     @csrf
     <button>Logout</button>
 </form>
-
-@guest('admin')
-    @php
-    header('Location: /');
-    exit();
-    @endphp
-@endguest

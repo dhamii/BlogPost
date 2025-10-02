@@ -32,7 +32,9 @@ class AdminController extends Controller
 
     public function dashboard(){
 
-
+        if(!auth('admin')->check()){
+            return to_route('admin.login');
+        }
         $users = User::all();
         $posts = Post::all();
         // $id = auth()->guard('admin')->user()->id;
