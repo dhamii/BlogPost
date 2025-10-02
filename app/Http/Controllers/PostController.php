@@ -27,7 +27,7 @@ class PostController extends Controller
         catch(ValidationException $e){
             dd($e->getmessage()); //TODO --->>>
         }
-        dd($incomingFields);
+        // dd($incomingFields);
         $incomingFields['user_id'] = auth()->id();
         Post::create($incomingFields);
         return redirect('/');

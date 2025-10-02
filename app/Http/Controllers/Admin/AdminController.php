@@ -36,7 +36,7 @@ class AdminController extends Controller
         $users = User::all();
         $posts = Post::all();
         // $id = auth()->guard('admin')->user()->id;
-        return view('admin.admindashboard', compact('users', 'posts'));
+        return view('admin.AdminDashboard', compact('users', 'posts'));
     }
 
     public function deleteuser(User $user, $id){
