@@ -26,13 +26,13 @@ class PostController extends Controller
             ]
         );}
         catch(ValidationException $e){
-            dd($e);
             return back()->with(['errorsss' => $e->getmessage()]);
         }
         // dd($request);
         // dd($incomingFields);
-        $request->file('image')->store('image', 'public');
+        $path = $request->file('image')->store('image', 'public');
         $incomingFields['user_id'] = auth()->id();
+        $incomingFields['image'] = $path;
         Post::create($incomingFields);
         return redirect('/');
     }

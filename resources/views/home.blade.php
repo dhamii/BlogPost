@@ -112,6 +112,7 @@
             @foreach($posts as $post)
                 <h1>{{$post['title']}} <small>by  {{$post->owner->name}}</small></h1>
                 <h3>{{$post['body']}}</h3>
+                <a href="storage/{{ $post->image }}">View image</a>
                 <a href="edit-post/{{$post->id}}">Edit</a>
                 <form action="/delete-post/{{$post->id}}" method="POST">
                     @method('DELETE')
