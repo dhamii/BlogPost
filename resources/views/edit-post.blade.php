@@ -73,11 +73,15 @@
     </style>
 </head>
 <body>
-    <form action="/edit-post/{{$post->id}}" method="POST">
+    <form action="/edit-post/{{$post->id}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <input type="text" name="title" value={{$post['title']}} />
         <textarea name="body">{{$post['body']}}</textarea>
+        @if ($post->image)
+            <img src="{{ asset('storage/'. $post->image) }}" alt="Post Image" style="max-width: 30%; height: 10%; margin-bottom: 15px; display:block;" />
+        @endif
+        <input type="file" name="image" value="{{ $post->image }}" accept="image/*" style="display: block; margin-bottom: 10px"/>
         <button>Save Changes</button>
     </form>
 </body>

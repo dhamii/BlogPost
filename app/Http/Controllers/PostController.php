@@ -17,6 +17,7 @@ class PostController extends Controller
     }
     public function createPost(Request $request)
     {
+        // dd($request->all());
         try{
         $incomingFields = $request->validate(
             [
@@ -29,10 +30,13 @@ class PostController extends Controller
             return back()->with(['errorsss' => $e->getmessage()]);
         }
         // dd($request);
-        // dd($incomingFields);
+        // dd($incomingFields)
+        if($request->hasFile('image')){
         $path = $request->file('image')->store('image', 'public');
+    $incomingFields['image'] = $path;       
+    }
         $incomingFields['user_id'] = auth()->id();
-        $incomingFields['image'] = $path;
+        // $incomingFields['image'] = $path;
         Post::create($incomingFields);
         return redirect('/');
     }
@@ -44,11 +48,16 @@ class PostController extends Controller
     public function editPost(Post $post, Request $request){
         $incomingFields = $request->validate([
             'title'=> 'required',
-            'body'=> 'required'
+            'body'=> 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
         if(auth()->user()->id != $post->user_id){
             return redirect('/');
         }
+        if($request->hasFile('image')){
+            $path = $request->file('image')->store('image', 'public');
+            $incomingFields['image'] = $path;       
+            }
         $post->update($incomingFields);
         return redirect('/');
     }
