@@ -24,13 +24,15 @@
       text-align: center;
       margin-bottom: 20px;
     }
-    .login-container input[type="text"],
+    .login-container input[type="email"],
     .login-container input[type="password"] {
-      width: 100%;
+            width: 100%;
       padding: 12px;
       margin: 8px 0;
       border: 1px solid #ccc;
       border-radius: 5px;
+        display: block;
+        box-sizing: border-box;
     }
     .login-container button {
       width: 100%;
@@ -61,8 +63,8 @@
     <h2>Login</h2>
     <form action="/login" method="post">
         @csrf
-        <input type="text" name="loginemail" placeholder="Enter email" required>
-        <input type="text" name="loginpassword" placeholder="Enter password" required>
+        <input type="email" name="loginemail" placeholder="Enter email" required>
+        <input type="password" name="loginpassword" placeholder="Enter password" required>
         <button>Login</button>
         @if(session('loginerror'))
             <div style="color: red; text-align: center; margin-top: 10px;">

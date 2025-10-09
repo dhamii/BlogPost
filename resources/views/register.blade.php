@@ -32,6 +32,8 @@
       margin: 8px 0;
       border: 1px solid #ccc;
       border-radius: 5px;
+        display: block;
+        box-sizing: border-box;
     }
     .register-container button {
       width: 100%;
@@ -69,7 +71,7 @@
     <form action="/register" method="post">
         @csrf
       <input type="text" name="name" placeholder="Full Name" required>
-      <input type="text" name="email" placeholder="Email Address" required>
+      <input type="email" name="email" placeholder="Email Address" required>
       <input type="password" name="password" placeholder="Password" required>
       <button type="submit">Register</button>
     </form>
